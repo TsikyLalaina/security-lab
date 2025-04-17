@@ -1,0 +1,201 @@
+
+<filter>
+	<rule>
+		<id></id>
+		<tracker>1744894120</tracker>
+		<type>pass</type>
+		<interface>lan</interface>
+		<ipprotocol>inet</ipprotocol>
+		<tag></tag>
+		<tagged></tagged>
+		<max></max>
+		<max-src-nodes></max-src-nodes>
+		<max-src-conn></max-src-conn>
+		<max-src-states></max-src-states>
+		<statetimeout></statetimeout>
+		<statetype><![CDATA[keep state]]></statetype>
+		<os></os>
+		<source>
+			<network>lan</network>
+		</source>
+		<destination>
+			<any></any>
+		</destination>
+		<log></log>
+		<descr><![CDATA[Allow LAN to Internet]]></descr>
+		<created>
+			<time>1744894120</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</created>
+		<updated>
+			<time>1744896535</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</updated>
+	</rule>
+	<rule>
+		<id></id>
+		<tracker>1744893753</tracker>
+		<type>pass</type>
+		<interface>lan</interface>
+		<ipprotocol>inet</ipprotocol>
+		<tag></tag>
+		<tagged></tagged>
+		<max></max>
+		<max-src-nodes></max-src-nodes>
+		<max-src-conn></max-src-conn>
+		<max-src-states></max-src-states>
+		<statetimeout></statetimeout>
+		<statetype><![CDATA[keep state]]></statetype>
+		<os></os>
+		<protocol>tcp</protocol>
+		<source>
+			<network>lan</network>
+		</source>
+		<destination>
+			<address>192.168.2.102</address>
+			<port>80</port>
+		</destination>
+		<log></log>
+		<descr><![CDATA[Allow LAN to DMZ Web Server]]></descr>
+		<created>
+			<time>1744893753</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</created>
+		<updated>
+			<time>1744896555</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</updated>
+	</rule>
+	<rule>
+		<id></id>
+		<tracker>1744895101</tracker>
+		<type>block</type>
+		<interface>lan</interface>
+		<ipprotocol>inet</ipprotocol>
+		<tag></tag>
+		<tagged></tagged>
+		<max></max>
+		<max-src-nodes></max-src-nodes>
+		<max-src-conn></max-src-conn>
+		<max-src-states></max-src-states>
+		<statetimeout></statetimeout>
+		<statetype><![CDATA[keep state]]></statetype>
+		<os></os>
+		<source>
+			<network>lan</network>
+		</source>
+		<destination>
+			<address>RFC1918_Networks</address>
+		</destination>
+		<log></log>
+		<descr><![CDATA[Block LAN to RFC1918]]></descr>
+		<created>
+			<time>1744895101</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</created>
+		<updated>
+			<time>1744896563</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</updated>
+	</rule>
+	<rule>
+		<id></id>
+		<tracker>1744895984</tracker>
+		<type>block</type>
+		<interface>opt1</interface>
+		<ipprotocol>inet</ipprotocol>
+		<tag></tag>
+		<tagged></tagged>
+		<max></max>
+		<max-src-nodes></max-src-nodes>
+		<max-src-conn></max-src-conn>
+		<max-src-states></max-src-states>
+		<statetimeout></statetimeout>
+		<statetype><![CDATA[keep state]]></statetype>
+		<os></os>
+		<source>
+			<network>opt1</network>
+		</source>
+		<destination>
+			<address>RFC1918_Networks</address>
+		</destination>
+		<log></log>
+		<descr><![CDATA[Block DMZ to RFC1918]]></descr>
+		<created>
+			<time>1744895984</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</created>
+		<updated>
+			<time>1744896576</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</updated>
+	</rule>
+	<rule>
+		<id></id>
+		<tracker>1744895898</tracker>
+		<type>block</type>
+		<interface>opt1</interface>
+		<ipprotocol>inet</ipprotocol>
+		<tag></tag>
+		<tagged></tagged>
+		<max></max>
+		<max-src-nodes></max-src-nodes>
+		<max-src-conn></max-src-conn>
+		<max-src-states></max-src-states>
+		<statetimeout></statetimeout>
+		<statetype><![CDATA[keep state]]></statetype>
+		<os></os>
+		<source>
+			<network>opt1</network>
+		</source>
+		<destination>
+			<network>lan</network>
+		</destination>
+		<log></log>
+		<descr><![CDATA[Block DMZ to LAN]]></descr>
+		<created>
+			<time>1744895898</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</created>
+		<updated>
+			<time>1744896590</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</updated>
+	</rule>
+	<rule>
+		<id></id>
+		<tracker>1744895752</tracker>
+		<type>pass</type>
+		<interface>opt1</interface>
+		<ipprotocol>inet</ipprotocol>
+		<tag></tag>
+		<tagged></tagged>
+		<max></max>
+		<max-src-nodes></max-src-nodes>
+		<max-src-conn></max-src-conn>
+		<max-src-states></max-src-states>
+		<statetimeout></statetimeout>
+		<statetype><![CDATA[keep state]]></statetype>
+		<os></os>
+		<source>
+			<network>opt1</network>
+		</source>
+		<destination>
+			<any></any>
+		</destination>
+		<log></log>
+		<descr><![CDATA[Allow DMZ to Internet]]></descr>
+		<created>
+			<time>1744895752</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</created>
+		<updated>
+			<time>1744896599</time>
+			<username><![CDATA[admin@192.168.10.101 (Local Database)]]></username>
+		</updated>
+	</rule>
+	<separator>
+		<opt1></opt1>
+		<lan></lan>
+	</separator>
+</filter>
