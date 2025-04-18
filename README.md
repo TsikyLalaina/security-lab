@@ -1,74 +1,120 @@
-Home Network Security Lab
-Overview
-This project simulates a secure home network using VirtualBox on Arch Linux with Hyprland. It includes a pfSense firewall managing WAN, LAN (192.168.10.0/24), and DMZ (192.168.2.0/24) networks, a LAN client on Ubuntu (192.168.10.100), and a DMZ web server on Alpine Linux (192.168.2.101) running Nginx. The goal is to practice firewall configuration, traffic monitoring, and network administration skills for a system and network administrator internship.
-Setup Steps
-1. pfSense VM Setup
+# Home Network Security Lab
 
-Downloaded: netgate-installer-amd64.iso.gz from pfsense.org.
-Decompressed: gunzip netgate-installer-amd64.iso.gz.
-VM Config: 512MB RAM, 8GB disk, NAT (WAN), Internal LAN (initially 192.168.1.1/24, later changed to 192.168.10.1/24 to avoid Starlink conflict).
-Installed pfSense: Set LAN DHCP range to 192.168.10.100–200.
-Resolved KVM Conflict: Unloaded kvm_intel to allow VirtualBox to run (April 16, 2025).
-Web UI: Accessible at https://192.168.10.1 (admin/pfsense).
+![Network Topology](screenshots/topology.png)
 
-2. LAN Client Setup
+A hands-on project simulating a secure home network built in VirtualBox on Arch Linux with Hyprland. Features a pfSense firewall managing WAN, LAN (`192.168.10.0/24`), and DMZ (`192.168.2.0/24`) networks, with an Ubuntu LAN client and an Alpine Linux DMZ web server running Nginx. Designed to practice firewall configuration, traffic monitoring, and network administration skills for a system and network administrator internship.
 
-Created VM: LAN-Client (Ubuntu, 2GB RAM, 10GB disk).
-Network: Internal Network LAN, assigned IP 192.168.10.100/24 via DHCP.
-Tested Access: Confirmed connectivity to pfSense (ping 192.168.10.1) and web UI.
+---
 
-3. DMZ Web Server Setup
+## Table of Contents
 
-Created VM: DMZ-Web-Alpine (Alpine Linux, 512MB RAM, 2GB disk).
-Network: Internal Network DMZ, assigned IP 192.168.2.101/24 via DHCP.
-Installed Nginx: Document root at /var/www/localhost/htdocs.
-Test Page: Added index.html with <h1>Welcome to DMZ Web Server</h1>.
-Timezone Fix: Set to Africa/Antananarivo (Madagascar, UTC+3) using tzdata (April 16, 2025).
-Tested Access: From LAN client via curl http://192.168.2.101.
+- [Project Overview](#project-overview)
+- [Network Setup](#network-setup)
+- [Challenges and Solutions](#challenges-and-solutions)
+- [Future Improvements](#future-improvements)
+- [Tools Used](#tools-used)
+- [Exported Files](#exported-files)
 
-4. Firewall Configuration
+---
 
-LAN Rules:
-Allow LAN to DMZ web server (192.168.2.101:80).
-Allow LAN to internet.
-Block LAN to RFC1918 networks (using alias RFC1918_Networks).
+## Project Overview
 
+This lab demonstrates core network security concepts through a virtualized environment:
 
-DMZ Rules:
-Allow DMZ to internet.
-Block DMZ to LAN.
-Block DMZ to RFC1918 networks.
+- **pfSense Firewall**: Manages WAN, LAN, and DMZ with custom firewall rules and NAT.
+- **LAN Client**: Ubuntu VM (`192.168.10.100`) for testing connectivity and web UI access.
+- **DMZ Web Server**: Lightweight Alpine Linux VM (`192.168.2.101`) running Nginx.
+- **Traffic Monitoring**: Logs and packet captures to analyze network activity.
 
+**Objective**: Build practical skills in network segmentation, firewall management, and troubleshooting for real-world administration roles.
 
-Fixes: Reordered rules and adjusted RFC1918 alias to exclude lab subnets (April 17, 2025).
+---
 
-5. Traffic Monitoring
+## Network Setup
 
-Enabled Logging: On firewall rules for passed and blocked traffic.
-Monitored Logs: Via Status > System Logs > Firewall.
-Packet Capture: Used Diagnostics > Packet Capture to analyze LAN traffic.
+### 1. pfSense VM Configuration
 
-Challenges and Solutions
+- **Download**: `netgate-installer-amd64.iso.gz` from [pfsense.org](https://www.pfsense.org).
+- **Decompression**: `gunzip netgate-installer-amd64.iso.gz`.
+- **VM Specs**: 512MB RAM, 8GB disk, NAT (WAN), Internal LAN network.
+  - Initial LAN: `192.168.1.1/24`, changed to `192.168.10.1/24` to avoid Starlink conflict.
+- **Installation**: Set LAN DHCP range to `192.168.10.100–200`.
+- **KVM Fix**: Unloaded `kvm_intel` to resolve VirtualBox conflict.
+- **Web UI**: Accessible at `https://192.168.10.1` (admin/pfsense).
 
-Starlink IP Conflict: Changed pfSense LAN from 192.168.1.1 to 192.168.10.1 to avoid conflict with Starlink router (April 16, 2025).
-VirtualBox KVM Error: Unloaded kvm_intel to allow pfSense VM to run (April 16, 2025).
-DMZ Connectivity: Added NAT for DMZ internet access and adjusted firewall rules (April 16, 2025).
-Nginx 404 Error: Fixed document root to /var/www/localhost/htdocs on Alpine (April 16, 2025).
-RFC1918 Blocking Issue: Reordered rules and excluded lab subnets from alias (April 17, 2025).
+### 2. LAN Client Setup
 
-Future Improvements
+- **VM**: `LAN-Client` (Ubuntu, 2GB RAM, 10GB disk).
+- **Network**: Internal Network `LAN`, IP `192.168.10.100/24` via DHCP.
+- **Validation**: Confirmed connectivity (`ping 192.168.10.1`) and web UI access.
 
-Add IDS/IPS (e.g., Suricata) for advanced threat detection.
-Simulate attacks (e.g., brute force) to test firewall rules.
-Expand to include VLANs, as practiced in Packet Tracer (April 10, 2025).
+### 3. DMZ Web Server Setup
 
-Tools Used
+- **VM**: `DMZ-Web-Alpine` (Alpine Linux, 512MB RAM, 2GB disk).
+- **Network**: Internal Network `DMZ`, IP `192.168.2.101/24` via DHCP.
+- **Web Server**: Installed Nginx, document root at `/var/www/localhost/htdocs`.
+- **Test Page**: Created `index.html` with `<h1>Welcome to DMZ Web Server</h1>`.
+- **Timezone**: Set to `Indian/Antananarivo` (Madagascar, UTC+3) using `tzdata`.
+- **Access Test**: Verified from LAN client with `curl http://192.168.2.101`.
 
-Arch Linux with Hyprland
-VirtualBox
-pfSense 2.7.2
-Ubuntu (LAN client)
-Alpine Linux (DMZ web server)
-Nginx
-Git/GitHub for version control
+### 4. Firewall Configuration
 
+#### LAN Rules
+- Allow LAN to DMZ web server (`192.168.2.101:80`).
+- Allow LAN to internet.
+- Block LAN to RFC1918 networks (via `RFC1918_Networks` alias, excluding lab subnets).
+
+#### DMZ Rules
+- Allow DMZ to internet.
+- Block DMZ to LAN.
+- Block DMZ to RFC1918 networks.
+
+#### Fixes
+- Reordered rules to prioritize LAN-to-DMZ access.
+- Adjusted `RFC1918_Networks` alias to exclude lab subnets (`192.168.2.0/24`, `192.168.10.0/24`).
+
+### 5. Traffic Monitoring
+
+- **Logging**: Enabled on firewall rules for passed and blocked traffic.
+- **Logs**: Monitored via Status > System Logs > Firewall.
+- **Packet Capture**: Analyzed LAN traffic using Diagnostics > Packet Capture.
+
+---
+
+## Challenges and Solutions
+
+- **Starlink IP Conflict**: Changed pfSense LAN to `192.168.10.1/24` to avoid overlap with Starlink router (`192.168.1.1`).
+- **VirtualBox KVM Error**: Unloaded `kvm_intel` to enable pfSense VM operation.
+- **DMZ Connectivity**: Configured NAT and firewall rules to enable internet access.
+- **Nginx 404 Error**: Set correct document root (`/var/www/localhost/htdocs`) on Alpine.
+- **RFC1918 Blocking Issue**: Reordered rules and refined alias to allow LAN-to-DMZ traffic.
+
+---
+
+## Future Improvements
+
+- Integrate IDS/IPS (e.g., Suricata) for threat detection.
+- Simulate attacks (e.g., brute force) to test firewall resilience.
+- Implement VLANs, building on Packet Tracer experience.
+
+---
+
+## Tools Used
+
+- **OS**: Arch Linux with Hyprland
+- **Virtualization**: VirtualBox
+- **Firewall**: pfSense 2.7.2
+- **Client**: Ubuntu
+- **Web Server**: Alpine Linux with Nginx
+- **Version Control**: Git/GitHub
+
+---
+
+## Exported Files
+
+- **Firewall Rules**: [firewall_rules.xml](firewall_rules.xml)
+- **Log Sample**: [system.log](system.log)
+
+---
+
+*Last updated: April 17, 2025*
