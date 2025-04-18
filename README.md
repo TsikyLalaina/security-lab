@@ -61,7 +61,7 @@ This lab demonstrates core network security concepts through a virtualized envir
 - **Timezone**: Set to `Africa/Antananarivo` (Madagascar, UTC+3) using `tzdata`.
 - **Access Test**: Verified from LAN client with `curl http://192.168.2.101`.
 
-![DMZ Web Server](AlpineDMZserver.png)
+![DMZ Web Server](AlpineDMZServer.png)
 
 ### 4. Firewall Configuration
 
