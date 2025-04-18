@@ -2,7 +2,7 @@
 
 ![Network Topology](topology.png)
 
-A hands-on project simulating a secure home network built in VirtualBox on Arch Linux with Hyprland. Features a pfSense firewall managing WAN, LAN (`192.168.10.0/24`), and DMZ (`192.168.2.0/24`) networks, with an Ubuntu LAN client and an Alpine Linux DMZ web server running Nginx. Designed to practice firewall configuration, traffic monitoring, and network administration skills for a system and network administrator internship.
+A hands-on project simulating a secure home network built in VirtualBox on Arch Linux with Hyprland. Features a pfSense firewall managing WAN, LAN (`192.168.10.0/24`), and DMZ (`192.168.2.0/24`) networks, with an Ubuntu LAN client and an Alpine Linux DMZ web server running Nginx. Designed to practice firewall configuration, traffic monitoring, and network administration skills.
 
 ---
 
